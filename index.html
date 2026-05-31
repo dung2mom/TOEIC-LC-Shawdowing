@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YJ TOEIC Shadowing — Part 3 Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js" 
+        onerror="this.onerror=null;this.src='https://unpkg.com/lamejs@1.2.1/lame.min.js';"></script>
+<style>
+  :root {
+    --bg: #FAF7F2;
+    --surface: #FFFFFF;
+    --surface-2: #F2EDE4;
+    --ink: #1A1815;
+    --ink-soft: #4A4640;
+    --ink-mute: #8B857A;
+    --line: #E5DFD2;
+    --line-strong: #C9C0AC;
+    --accent: #1B4332;
+    --accent-soft: #D8E2DC;
+    --gold: #A07810;
+    --gold-soft: #F4ECD2;
+    --speaker-a: #B23A3A;
+    --speaker-a-bg: #FBE8E6;
+    --speaker-b: #2A5F4E;
+    --speaker-b-bg: #DCEBE4;
+    --speaker-c: #5E4B8B;
+    --speaker-c-bg: #E8E3F2;
+    --warn: #B85C00;
+    --shadow-sm: 0 1px 2px rgba(26,24,21,.04), 0 1px 1px rgba(26,24,21,.03);
+    --shadow-md: 0 4px 16px rgba(26,24,21,.06), 0 2px 4px rgba(26,24,21,.04);
+    --shadow-lg: 0 12px 40px rgba(26,24,21,.10), 0 4px 12px rgba(26,24,21,.06);
+    --radius-sm: 6px;
+    --radius: 12px;
+    --radius-lg: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  /* Subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(160, 120, 16, 0.025), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(27, 67, 50, 0.02), transparent 40%);
+    z-index: 0;
+  }
+
+  .app {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    min-height: 100vh;
+    max-width: 1480px;
+    margin: 0 auto;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--line);
+    padding: 36px 26px;
+    overflow-y: auto;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .brand-mark {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 28px;
+    font-style: italic;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .brand-sub {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+  .brand-tag {
+    margin-bottom: 28px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, var(--gold-soft) 0%, #FAF0D4 100%);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .brand-tag-main {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .brand-tag-sub {
+    display: block;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-top: 4px;
+  }
+
+  .progress-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #163A2A 100%);
+    color: #F4ECD2;
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .progress-card::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(244,236,210,0.15);
+    border-radius: 50%;
+  }
+  .progress-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
+    margin-bottom: 6px;
+  }
+  .progress-number {
+    font-family: 'Fraunces', serif;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .progress-sublabel {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .conv-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .conv-item {
+    background: transparent;
+    border: 1px solid transparent;
+    text-align: left;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-family: inherit;
+    width: 100%;
+  }
+  .conv-item:hover {
+    background: var(--surface-2);
+  }
+  .conv-item.active {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .conv-num {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    padding-top: 2px;
+    min-width: 24px;
+  }
+  .conv-item.active .conv-num { color: var(--accent); }
+  .conv-info { flex: 1; min-width: 0; }
+  .conv-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+  .conv-meta {
+    font-size: 12px;
+    color: var(--ink-mute);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .conv-meta .dot {
+    width: 3px;
+    height: 3px;
+    background: var(--ink-mute);
+    border-radius: 50%;
+  }
+  .conv-count {
+    font-size: 10px;
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .conv-count.zero { background: transparent; color: var(--ink-mute); }
+
+  /* ============ MAIN ============ */
+  .main {
+    padding: 44px 56px 220px;
+    min-width: 0;
+  }
+
+  .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .header-meta-line { flex: none; width: 28px; height: 1px; background: var(--gold); }
+
+  .conv-headline {
+    font-family: 'Fraunces', serif;
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .conv-subhead {
+    font-size: 17px;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+  }
+
+  .quick-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1;
+  }
+  .btn:hover { background: var(--surface-2); border-color: var(--ink-soft); }
+  .btn.active { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: #163A2A; }
+  .btn.gold {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+  .btn.gold:hover { background: #8A6708; }
+  .btn.danger {
+    background: var(--speaker-a);
+    color: #fff;
+    border-color: var(--speaker-a);
+  }
+  .btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .btn.ghost {
+    background: transparent;
+    border-color: transparent;
+  }
+  .btn.ghost:hover { background: var(--surface-2); }
+  .btn.small {
+    padding: 6px 10px;
+    font-size: 12px;
+    gap: 4px;
+  }
+  /* Eye-catching colored toggle buttons */
+  .btn.color-gold {
+    background: var(--gold-soft);
+    color: var(--gold);
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+  .btn.color-gold:hover {
+    background: var(--gold);
+    color: white;
+  }
+  .btn.color-gold.active {
+    background: var(--gold);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(160, 120, 16, 0.2);
+  }
+  .btn.color-green {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .btn.color-green:hover {
+    background: var(--accent);
+    color: white;
+  }
+  .btn.color-green.active {
+    background: var(--accent);
+    color: white;
+    box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.18);
+  }
+  .script-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* ============ MODE TABS ============ */
+  .mode-bar {
+    display: flex;
+    gap: 4px;
+    background: var(--surface-2);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    width: fit-content;
+    border: 1px solid var(--line);
+  }
+  .mode-btn {
+    background: transparent;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .mode-btn:hover { color: var(--ink); }
+  .mode-btn.active {
+    background: var(--surface);
+    color: var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .mode-desc {
+    font-size: 14px;
+    color: var(--ink-mute);
+    margin-bottom: 24px;
+    font-style: italic;
+    font-family: 'Fraunces', serif;
+    line-height: 1.55;
+  }
+
+  /* ============ CONVERSATION SCRIPT ============ */
+  .script-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+  }
+
+  .script-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .script-label {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .line-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .line {
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 16px;
+    align-items: start;
+    position: relative;
+    scroll-margin-top: 100px;
+    scroll-margin-bottom: 120px;
+  }
+  .line:hover { background: var(--surface-2); }
+  .line.playing {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(160, 120, 16, 0.12);
+  }
+  .line.playing::before {
+    content: '▶';
+    position: absolute;
+    left: -22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 11px;
+    animation: pulse 1.2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+    50% { opacity: 0.4; transform: translateY(-50%) scale(0.85); }
+  }
+
+  .speaker-tag {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-style: italic;
+  }
+  .speaker-A { background: var(--speaker-a-bg); color: var(--speaker-a); }
+  .speaker-B { background: var(--speaker-b-bg); color: var(--speaker-b); }
+  .speaker-C { background: var(--speaker-c-bg); color: var(--speaker-c); }
+
+  .line-content {
+    min-width: 0;
+  }
+  .line-en {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .line-en .key-word {
+    background: linear-gradient(transparent 60%, var(--gold-soft) 60%);
+    padding: 0 1px;
+    font-weight: 500;
+    cursor: help;
+    border-bottom: 1px dotted var(--gold);
+  }
+  .line-ko {
+    font-size: 15px;
+    color: var(--ink-mute);
+    margin-top: 8px;
+    line-height: 1.55;
+    display: none;
+  }
+  .line-ko.show { display: block; }
+
+  .line-play {
+    background: transparent;
+    border: 1px solid var(--line);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-soft);
+    transition: all 0.15s ease;
+    opacity: 0;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+  .line:hover .line-play { opacity: 1; }
+  .line.playing .line-play { opacity: 1; background: var(--gold); color: white; border-color: var(--gold); }
+  .line-play:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  /* ============ AUDIO CONTROL BAR ============ */
+  .control-bar {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 100px;
+    padding: 10px 14px;
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+    max-width: 95vw;
+  }
+  .ctrl-btn {
+    background: var(--surface-2);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    transition: all 0.15s ease;
+    font-size: 14px;
+  }
+  .ctrl-btn:hover { background: var(--line); }
+  .ctrl-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  .ctrl-btn.play {
+    width: 52px;
+    height: 52px;
+    background: var(--accent);
+    color: var(--bg);
+    font-size: 18px;
+  }
+  .ctrl-btn.play:hover { background: #163A2A; }
+
+  .ctrl-divider {
+    width: 1px;
+    height: 28px;
+    background: var(--line);
+    margin: 0 4px;
+  }
+
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+  }
+  .speed-label {
+    font-size: 11px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .speed-pill {
+    background: var(--surface-2);
+    border: none;
+    padding: 5px 9px;
+    border-radius: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--ink-soft);
+    transition: all 0.15s ease;
+  }
+  .speed-pill.active {
+    background: var(--gold);
+    color: white;
+  }
+
+  .ctrl-status {
+    font-size: 12px;
+    color: var(--ink-mute);
+    padding: 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* ============ RECORDING PANEL ============ */
+  .panels {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 32px;
+  }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 30px;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .panel-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .panel-title .ornament {
+    color: var(--gold);
+    margin-right: 4px;
+    font-style: italic;
+  }
+
+  .record-area {
+    text-align: center;
+    padding: 16px 0 8px;
+  }
+  .rec-button {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    border: 2px solid var(--line-strong);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .rec-button:hover { transform: scale(1.04); }
+  .rec-button.recording {
+    background: var(--speaker-a);
+    border-color: var(--speaker-a);
+    animation: rec-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes rec-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(178, 58, 58, 0.5); }
+    50% { box-shadow: 0 0 0 16px rgba(178, 58, 58, 0); }
+  }
+  .rec-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--speaker-a);
+    transition: all 0.2s ease;
+  }
+  .rec-button.recording .rec-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background: white;
+  }
+
+  .rec-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    min-height: 18px;
+  }
+
+  .recording-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    max-height: 140px;
+    overflow-y: auto;
+  }
+  .recording-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+  }
+  .recording-item .rec-meta {
+    flex: 1;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .recording-item .play-rec {
+    background: var(--accent);
+    color: white;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .recording-item .dl-rec {
+    background: var(--gold);
+    color: white;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  .recording-item .dl-rec:hover {
+    background: #8A6708;
+    transform: translateY(-1px);
+  }
+  .recording-item .dl-rec:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .recording-item .del-rec {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--ink-mute);
+    font-size: 14px;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+  .recording-item .del-rec:hover { color: var(--speaker-a); }
+
+  .empty-state {
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 12px;
+    font-style: italic;
+    padding: 20px 0;
+    font-family: 'Fraunces', serif;
+  }
+
+  /* ============ Q&A PANEL — Multiple Choice ============ */
+  .qa-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .qa-item {
+    background: var(--surface-2);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    border-left: 4px solid var(--gold);
+  }
+  .qa-q {
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .qa-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--gold);
+    margin-right: 8px;
+    font-size: 19px;
+  }
+  .qa-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .qa-opt {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 16px;
+    background: white;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    transition: all 0.15s ease;
+    width: 100%;
+    line-height: 1.5;
+  }
+  .qa-opt:hover {
+    background: var(--surface-2);
+    border-color: var(--ink-soft);
+  }
+  .qa-opt.selected {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+  }
+  .qa-opt.correct {
+    background: #DCEBE4;
+    border-color: var(--speaker-b);
+    color: var(--speaker-b);
+    font-weight: 600;
+  }
+  .qa-opt.correct .qa-letter {
+    background: var(--speaker-b);
+    color: white;
+  }
+  .qa-opt.wrong {
+    background: #FBE8E6;
+    border-color: var(--speaker-a);
+    color: var(--speaker-a);
+  }
+  .qa-opt.wrong .qa-letter {
+    background: var(--speaker-a);
+    color: white;
+  }
+  .qa-letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--ink-soft);
+    transition: all 0.15s ease;
+  }
+  .qa-opt.selected .qa-letter {
+    background: var(--accent);
+    color: white;
+  }
+  .qa-text {
+    flex: 1;
+    padding-top: 2px;
+  }
+
+  /* ============ VOCAB POPUP ============ */
+  .vocab-tip {
+    position: absolute;
+    background: var(--ink);
+    color: var(--bg);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    max-width: 260px;
+    z-index: 200;
+    box-shadow: var(--shadow-lg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .vocab-tip.show { opacity: 1; }
+  .vocab-tip strong { color: var(--gold-soft); }
+  .vocab-tip .vocab-ko { display: block; margin-top: 4px; color: rgba(244,236,210,0.7); font-size: 12px; }
+
+  /* ============ PLAYBACK STATUS INDICATOR ============ */
+  .playback-status {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent);
+    color: var(--bg);
+    padding: 12px 18px;
+    border-radius: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 1000;
+    max-width: 480px;
+    box-shadow: var(--shadow-lg);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    animation: statusFadeIn 0.25s ease-out;
+  }
+  .playback-status.show { display: flex; }
+  .playback-status .status-pulse {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: pulse 1s ease-in-out infinite;
+  }
+  .playback-status .status-count {
+    background: var(--gold);
+    color: var(--ink);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .playback-status .status-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    min-width: 0;
+  }
+  @keyframes statusFadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ ECHO MODE OVERLAY ============ */
+  .echo-prompt {
+    background: linear-gradient(135deg, var(--gold-soft) 0%, #FAF0D4 100%);
+    border: 2px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    display: none;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--ink);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .echo-prompt.show {
+    display: flex;
+    animation: echoSlideIn 0.3s ease-out;
+  }
+  @keyframes echoSlideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .echo-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--speaker-a);
+    animation: rec-pulse 1s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .echo-text {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .echo-text strong {
+    color: var(--speaker-a);
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .echo-timer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 70px;
+    text-align: right;
+    line-height: 1;
+  }
+  .echo-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  /* Large tablet / small laptop */
+  @media (max-width: 1200px) {
+    .main { padding: 36px 36px 220px; }
+    .conv-headline { font-size: 42px; }
+    .control-bar { max-width: 92vw; }
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar {
+      position: relative;
+      height: auto;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      padding: 28px 24px 24px;
+    }
+    .progress-card { margin-bottom: 20px; }
+    .conv-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .main { padding: 32px 28px 220px; }
+    .conv-headline { font-size: 38px; }
+    .script-card { padding: 26px 24px; }
+    .panel { padding: 24px 22px; }
+    .control-bar { padding: 10px 12px; gap: 6px; }
+    .playback-status { right: 16px; top: 16px; max-width: 380px; font-size: 12px; }
+  }
+
+  /* Mobile landscape / large phone */
+  @media (max-width: 760px) {
+    html, body { font-size: 15.5px; }
+    .conv-list { grid-template-columns: 1fr; }
+    .main { padding: 24px 18px 200px; }
+    .conv-headline { font-size: 30px; }
+    .conv-subhead { font-size: 15px; }
+    .header-row { margin-bottom: 24px; }
+    .mode-bar { width: 100%; flex-wrap: wrap; }
+    .mode-btn { padding: 10px 12px; font-size: 14px; flex: 1; justify-content: center; min-width: 0; }
+    .mode-desc { font-size: 13px; }
+    .script-card { padding: 22px 18px; }
+    .script-header { gap: 10px; }
+    .script-label { font-size: 14px; }
+    .script-header-actions { gap: 6px; flex-wrap: wrap; }
+    .panel { padding: 20px 18px; }
+    .panels { gap: 18px; }
+    .line { padding: 14px 14px; gap: 12px; grid-template-columns: 40px 1fr; }
+    .line-play { display: none; }
+    .line-en { font-size: 17px; line-height: 1.55; }
+    .line-ko { font-size: 14px; }
+    .speaker-tag { width: 40px; height: 40px; font-size: 14px; }
+    .qa-item { padding: 18px 16px; }
+    .qa-q { font-size: 16px; line-height: 1.45; }
+    .qa-opt { font-size: 14px; padding: 11px 14px; gap: 11px; }
+    .qa-letter { width: 26px; height: 26px; font-size: 14px; }
+    .panel-title { font-size: 20px; }
+    .rec-button { width: 76px; height: 76px; }
+    .rec-dot { width: 24px; height: 24px; }
+    .control-bar {
+      bottom: 12px;
+      padding: 8px 10px;
+      gap: 4px;
+      border-radius: 56px;
+      max-width: 96vw;
+    }
+    .ctrl-btn { width: 38px; height: 38px; font-size: 13px; }
+    .ctrl-btn.play { width: 48px; height: 48px; font-size: 16px; }
+    .speed-label { display: none; }
+    .speed-pill { padding: 4px 7px; font-size: 10px; }
+    .ctrl-status { font-size: 11px; padding: 0 6px; min-width: 50px; }
+    .ctrl-divider { height: 24px; margin: 0 2px; }
+    .playback-status {
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      max-width: none;
+      font-size: 12px;
+      padding: 10px 14px;
+    }
+    .brand-tag { padding: 12px 14px; }
+    .brand-tag-main { font-size: 20px; }
+    .echo-prompt { padding: 14px 16px; gap: 12px; }
+    .echo-text { font-size: 13px; }
+    .echo-timer { font-size: 22px; min-width: 60px; }
+  }
+
+  /* Small phone */
+  @media (max-width: 420px) {
+    html, body { font-size: 15px; }
+    .main { padding: 20px 14px 200px; }
+    .sidebar { padding: 22px 18px 18px; }
+    .conv-headline { font-size: 26px; }
+    .script-card { padding: 18px 14px; }
+    .script-header { padding-bottom: 14px; margin-bottom: 18px; }
+    .panel { padding: 18px 14px; }
+    .line { padding: 12px 10px; gap: 10px; grid-template-columns: 36px 1fr; }
+    .line-en { font-size: 16px; }
+    .speaker-tag { width: 36px; height: 36px; font-size: 13px; }
+    .qa-item { padding: 16px 14px; }
+    .qa-opt { font-size: 13.5px; padding: 10px 12px; }
+    .panel-title { font-size: 18px; }
+    .mode-btn span:nth-child(2) { display: none; }  /* hide text, keep emoji only */
+    .ctrl-status { display: none; }
+    .speed-pill { padding: 3px 6px; }
+    .btn.small span:nth-child(2) { /* keep all text on small btn */ display: inline; }
+  }
+
+  /* ============ FOOTER ============ */
+  .app-footer {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 36px 24px 32px;
+    margin-top: 0;
+    border-top: 2px solid var(--gold);
+    background: var(--surface);
+    font-family: 'Pretendard', -apple-system, sans-serif;
+  }
+  .copyright-block {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  .copyright-symbol {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    color: var(--gold);
+    font-weight: 600;
+    line-height: 1;
+  }
+  .copyright-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .copyright-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  .copyright-rights {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  @media (max-width: 560px) {
+    .app-footer { padding: 28px 16px 24px; }
+    .copyright-symbol { font-size: 20px; }
+    .copyright-year { font-size: 13px; }
+    .copyright-name { font-size: 18px; }
+    .copyright-rights { font-size: 11px; }
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-mute); }
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">YJ</span>
+      <span class="brand-sub">Shadowing</span>
+    </div>
+    <div class="brand-tag">
+      <span class="brand-tag-main">TOEIC Listening</span>
+      <span class="brand-tag-sub">Part 3 · Short Conversations</span>
+    </div>
+
+    <div class="progress-card">
+      <div class="progress-label">Total Practices</div>
+      <div class="progress-number" id="totalPractices">0</div>
+      <div class="progress-sublabel" id="streakText">Start your practice today</div>
+    </div>
+
+    <div class="section-title">Conversations</div>
+    <div class="conv-list" id="convList"></div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="header-row">
+      <div>
+        <div class="header-meta">
+          <span class="header-meta-line"></span>
+          <span id="convTopic">Office Communication</span>
+          <span>·</span>
+          <span id="convLevel">Intermediate</span>
+        </div>
+        <h1 class="conv-headline" id="convTitle">Project Deadline Discussion</h1>
+        <p class="conv-subhead" id="convDesc">A team member negotiates a tight project timeline.</p>
+      </div>
+    </div>
+
+    <!-- MODE TABS -->
+    <div class="mode-bar">
+      <button class="mode-btn active" data-mode="listen">
+        <span>🎧</span> Listen Mode
+      </button>
+      <button class="mode-btn" data-mode="echo">
+        <span>🔁</span> Echo Mode
+      </button>
+      <button class="mode-btn" data-mode="sync">
+        <span>🎙️</span> Sync Mode
+      </button>
+    </div>
+    <div class="mode-desc" id="modeDesc">🎧 Listen Mode — 전체 대화를 처음부터 끝까지 자연스럽게 들어 보세요. 문장 사이 짧은 호흡으로 6문장 모두 순차 재생됩니다.</div>
+
+    <!-- ECHO PROMPT -->
+    <div class="echo-prompt" id="echoPrompt">
+      <span class="echo-dot"></span>
+      <span class="echo-text"><strong>Your Turn!</strong> 방금 들은 문장을 그대로 따라 말해 보세요.</span>
+      <span class="echo-timer" id="echoTimer">0.0s</span>
+      <div class="echo-progress-bar" id="echoProgress"></div>
+    </div>
+
+    <!-- SCRIPT -->
+    <section class="script-card">
+      <div class="script-header">
+        <span class="script-label">— Conversation Script —</span>
+        <div class="script-header-actions">
+          <button class="btn small color-gold" id="toggleKo">
+            <span>🇰🇷</span>
+            <span>한글 번역</span>
+          </button>
+          <button class="btn small" id="ttsTestBtn" title="음성 출력이 정상인지 확인">
+            <span>🔊</span>
+            <span>음성 테스트</span>
+          </button>
+          <button class="btn small primary" id="playAllBtn">
+            <span>▶</span>
+            <span>전체 듣기</span>
+          </button>
+          <span style="font-size:11px; color:var(--ink-mute); font-family:'JetBrains Mono',monospace; letter-spacing:0.05em;" id="lineCounter">0 / 0</span>
+        </div>
+      </div>
+      <div class="line-list" id="lineList"></div>
+    </section>
+
+    <!-- PANELS: Recording + Q&A -->
+    <div class="panels">
+      <!-- Recording Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><span class="ornament">⌖</span> Your Recording</div>
+          <button class="btn ghost" id="clearRecs" style="font-size:11px;">전체 삭제</button>
+        </div>
+        <div class="record-area">
+          <button class="rec-button" id="recBtn">
+            <span class="rec-dot"></span>
+          </button>
+          <div class="rec-status" id="recStatus">탭하여 녹음 시작</div>
+        </div>
+        <div class="recording-list" id="recList">
+          <div class="empty-state">아직 녹음이 없습니다.</div>
+        </div>
+      </div>
+
+      <!-- Q&A Panel -->
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><span class="ornament">❋</span> Part 3 Questions</div>
+          <button class="btn small color-green" id="toggleAns">
+            <span>✓</span>
+            <span>정답 보기</span>
+          </button>
+        </div>
+        <div class="qa-list" id="qaList"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="copyright-block">
+      <span class="copyright-symbol">©</span>
+      <span class="copyright-name">Yeon Jeong Kim</span>
+    </div>
+    <div class="copyright-rights">All Rights Reserved · 무단 전재 및 재배포 금지</div>
+  </footer>
+</div>
+
+<!-- CONTROL BAR -->
+<div class="control-bar">
+  <button class="ctrl-btn" id="prevBtn" title="이전 문장">⏮</button>
+  <button class="ctrl-btn play" id="playBtn" title="재생/일시정지">▶</button>
+  <button class="ctrl-btn" id="nextBtn" title="다음 문장">⏭</button>
+  <button class="ctrl-btn" id="stopBtn" title="처음으로">↺</button>
+
+  <div class="ctrl-divider"></div>
+
+  <div class="speed-control">
+    <span class="speed-label">Speed</span>
+    <button class="speed-pill" data-speed="0.7">0.7×</button>
+    <button class="speed-pill" data-speed="0.85">0.85×</button>
+    <button class="speed-pill active" data-speed="1">1.0×</button>
+    <button class="speed-pill" data-speed="1.15">1.15×</button>
+  </div>
+
+  <div class="ctrl-divider"></div>
+
+  <div class="ctrl-status" id="ctrlStatus">— · —</div>
+</div>
+
+<!-- PLAYBACK STATUS INDICATOR -->
+<div class="playback-status" id="playbackStatus">
+  <span class="status-pulse"></span>
+  <span class="status-count" id="statusCount">1/6</span>
+  <span class="status-text" id="statusText">Ready</span>
+</div>
+
+<!-- VOCAB TOOLTIP -->
+<div class="vocab-tip" id="vocabTip"></div>
+
+<script>
+/* =========================================================
+   CONVERSATION DATA — 10 TOEIC Part 3 dialogues
+   ========================================================= */
+const CONVERSATIONS = [
+  {
+    id: 'c1',
+    topic: 'Office Communication',
+    level: 'Intermediate',
+    title: 'Project Deadline Discussion',
+    desc: 'A team member negotiates a tight project timeline.',
+    lines: [
+      { spk: 'A', g: 'M', en: "Hi Sarah, do you have a minute? I wanted to discuss the Henderson project timeline.", ko: "안녕 사라, 잠깐 시간 있어요? Henderson 프로젝트 일정에 대해 얘기하고 싶어서요.", vocab: [['timeline','일정, 기한']] },
+      { spk: 'B', g: 'F', en: "Sure, what's the issue?", ko: "물론이죠, 무슨 문제예요?" },
+      { spk: 'A', g: 'M', en: "Well, the client just emailed asking if we can deliver the final report by next Friday instead of the following week.", ko: "음, 클라이언트가 방금 메일을 보냈는데 다음 주 금요일이 아니라 이번 주 금요일까지 최종 보고서를 줄 수 있는지 물어보네요.", vocab: [['deliver','전달하다, 제공하다']] },
+      { spk: 'B', g: 'F', en: "That's quite a tight deadline. Have you spoken to the design team yet?", ko: "꽤 빠듯한 일정이네요. 디자인 팀과는 얘기했나요?", vocab: [['tight deadline','빠듯한 마감']] },
+      { spk: 'A', g: 'M', en: "Not yet. I wanted to check with you first since you're managing the resources.", ko: "아직요. 당신이 리소스를 관리하니까 먼저 확인하고 싶었어요.", vocab: [['resources','자원, 인력']] },
+      { spk: 'B', g: 'F', en: "Let me look at everyone's workload and get back to you by tomorrow morning.", ko: "모두의 업무량을 검토하고 내일 아침까지 답변 드릴게요.", vocab: [['workload','업무량'],['get back to','다시 연락하다']] }
+    ],
+    questions: [
+      {
+        q: "What is the man's main concern?",
+        options: [
+          "Hiring a new designer for the team",
+          "An earlier project delivery deadline",
+          "A budget cut for the Henderson project"
+        ],
+        answer: 1
+      },
+      {
+        q: "Who manages the team's resources?",
+        options: [
+          "The man speaking",
+          "The woman, Sarah",
+          "The design team lead"
+        ],
+        answer: 1
+      },
+      {
+        q: "When will the woman get back to the man?",
+        options: [
+          "Later this afternoon",
+          "By tomorrow morning",
+          "After the next client meeting"
+        ],
+        answer: 1
+      }
+    ]
+  },
+  {
+    id: 'c2',
+    topic: 'Hospitality',
+    level: 'Beginner',
+    title: 'Hotel Check-in & Upgrade',
+    desc: 'A guest requests a room upgrade and late checkout.',
+    lines: [
+      { spk: 'A', g: 'F', en: "Hi, I have a reservation under Anderson, checking in for three nights.", ko: "안녕하세요, Anderson 이름으로 3박 예약했습니다, 체크인하려고요.", vocab: [['reservation','예약']] },
+      { spk: 'B', g: 'M', en: "Welcome, Ms. Anderson. Let me pull up your reservation. I see you booked a standard king room.", ko: "환영합니다, Anderson 씨. 예약을 확인해 보겠습니다. 스탠다드 킹룸을 예약하셨네요.", vocab: [['pull up','(정보를) 불러오다']] },
+      { spk: 'A', g: 'F', en: "Actually, I called yesterday to request an upgrade to a suite if possible.", ko: "사실 어제 전화해서 가능하면 스위트룸으로 업그레이드해 달라고 요청했어요.", vocab: [['upgrade','업그레이드']] },
+      { spk: 'B', g: 'M', en: "Let me check our availability. Yes, we do have a junior suite available. There will be an additional charge of fifty dollars per night.", ko: "이용 가능한 객실을 확인해 보겠습니다. 네, 주니어 스위트가 가능합니다. 1박당 50달러 추가 요금이 있습니다.", vocab: [['availability','이용 가능성'],['additional charge','추가 요금']] },
+      { spk: 'A', g: 'F', en: "That works. Could I also request a late checkout on Sunday? I have a flight at six PM.", ko: "괜찮아요. 일요일에 늦은 체크아웃도 요청할 수 있을까요? 오후 6시 비행기가 있어서요.", vocab: [['late checkout','늦은 체크아웃']] },
+      { spk: 'B', g: 'M', en: "Absolutely. I'll note that on your reservation. Checkout will be at two PM instead of eleven.", ko: "물론입니다. 예약에 기록해 두겠습니다. 체크아웃은 11시 대신 오후 2시입니다." }
+    ],
+    questions: [
+      {
+        q: "Where most likely is this conversation taking place?",
+        options: [
+          "At an airport check-in counter",
+          "At a hotel reception desk",
+          "At a car rental office"
+        ],
+        answer: 1
+      },
+      {
+        q: "What does the woman request?",
+        options: [
+          "An early breakfast and parking",
+          "A room upgrade and a late checkout",
+          "A discount on her current room rate"
+        ],
+        answer: 1
+      },
+      {
+        q: "How much will the upgrade cost per night?",
+        options: [
+          "Thirty dollars",
+          "Fifty dollars",
+          "Seventy-five dollars"
+        ],
+        answer: 1
+      }
+    ]
+  },
+  {
+    id: 'c3',
+    topic: 'Office Procurement',
+    level: 'Intermediate',
+    title: 'Equipment Order Coordination',
+    desc: 'Three colleagues coordinate a monitor purchase for the marketing team.',
+    lines: [
+      { spk: 'A', g: 'F', en: "James, can you help me with our equipment order? We need new monitors for the marketing team.", ko: "James, 장비 주문 좀 도와줄래요? 마케팅 팀에 새 모니터가 필요해요.", vocab: [['equipment order','장비 주문']] },
+      { spk: 'B', g: 'M', en: "Sure, how many do we need exactly?", ko: "물론이죠, 정확히 몇 대 필요한가요?" },
+      { spk: 'A', g: 'F', en: "Eight monitors, ideally twenty-seven inch with high resolution.", ko: "8대요, 가능하면 고해상도 27인치로요.", vocab: [['high resolution','고해상도']] },
+      { spk: 'C', g: 'M', en: "Excuse me, I overheard. We already have a vendor for this. I can send you their catalog.", ko: "실례지만, 들었어요. 이건 이미 거래처가 있어요. 카탈로그를 보내 드릴게요.", vocab: [['vendor','공급업체'],['catalog','카탈로그']] },
+      { spk: 'A', g: 'F', en: "Oh, that's great. What's the typical delivery time?", ko: "오, 좋네요. 보통 배송 시간이 얼마나 걸리나요?", vocab: [['delivery time','배송 시간']] },
+      { spk: 'C', g: 'M', en: "Usually three to five business days. I'll forward you the contact information today.", ko: "보통 영업일 기준 3~5일이요. 오늘 연락처를 전달해 드릴게요.", vocab: [['business days','영업일'],['forward','전달하다']] }
+    ],
+    questions: [
+      {
+        q: "What does the woman need to order?",
+        options: [
+          "New laptops for the sales team",
+          "New monitors for the marketing team",
+          "New printers for the design team"
+        ],
+        answer: 1
+      },
+      {
+        q: "What does the third speaker offer to do?",
+        options: [
+          "Place the order himself immediately",
+          "Send them a vendor catalog and contact info",
+          "Negotiate a discount with another supplier"
+        ],
+        answer: 1
+      },
+      {
+        q: "What is the typical delivery time?",
+        options: [
+          "One to two business days",
+          "Three to five business days",
+          "About two weeks"
+        ],
+        answer: 1
+      }
+    ]
+  },
+  {
+    id: 'c4',
+    topic: 'Restaurant Service',
+    level: 'Beginner',
+    title: 'Reservation Mix-up',
+    desc: 'A customer arrives to find a reservation problem.',
+    lines: [
+      { spk: 'A', g: 'M', en: "Hi, I made a reservation for seven at seven PM under the name Kim.", ko: "안녕하세요, Kim 이름으로 7시에 7명 예약했어요." },
+      { spk: 'B', g: 'F', en: "Let me check. I'm sorry sir, but it looks like your reservation was for tomorrow night.", ko: "확인해 보겠습니다. 죄송합니다 선생님, 예약이 내일 밤으로 되어 있는 것 같네요." },
+      { spk: 'A', g: 'M', en: "Are you serious? I specifically asked for tonight when I called last week.", ko: "정말요? 지난주에 전화했을 때 분명히 오늘 밤이라고 했어요.", vocab: [['specifically','특히, 분명히']] },
+      { spk: 'B', g: 'F', en: "I sincerely apologize for the confusion. Let me see what we can do. We have a table for six, but I'd need about fifteen minutes to set up a larger table.", ko: "혼란을 드려 진심으로 사과드립니다. 어떻게 할 수 있을지 확인해 볼게요. 6인용 테이블은 있는데, 더 큰 테이블 준비에 15분 정도 필요합니다.", vocab: [['sincerely apologize','진심으로 사과하다'],['confusion','혼란']] },
+      { spk: 'A', g: 'M', en: "Fifteen minutes is fine. We can wait at the bar.", ko: "15분이면 괜찮아요. 바에서 기다릴게요." },
+      { spk: 'B', g: 'F', en: "Thank you for your patience. I'll comp your drinks while you wait.", ko: "기다려 주셔서 감사합니다. 기다리시는 동안 음료는 무료로 제공해 드릴게요.", vocab: [['patience','인내심'],['comp','무료로 제공하다']] }
+    ],
+    questions: [
+      {
+        q: "What is the main problem?",
+        options: [
+          "The restaurant is fully booked tonight",
+          "The reservation was booked for the wrong day",
+          "The man arrived too early for his reservation"
+        ],
+        answer: 1
+      },
+      {
+        q: "How long does the man need to wait?",
+        options: [
+          "About five minutes",
+          "About fifteen minutes",
+          "About thirty minutes"
+        ],
+        answer: 1
+      },
+      {
+        q: "What does the host offer to compensate?",
+        options: [
+          "Free drinks while they wait",
+          "A discount on their entire meal",
+          "A complimentary dessert"
+        ],
+        answer: 0
+      }
+    ]
+  }
+
+];
+
+/* =========================================================
+   STATE
+   ========================================================= */
+const STATE = {
+  current: 0,
+  lineIdx: 0,
+  mode: 'listen',       // listen | echo | sync
+  speed: 1.0,
+  playing: false,
+  showKo: false,
+  showAns: false,
+  voices: { F: null, M: null, F2: null },
+  practiceCount: {},    // {convId: number}
+  recordings: {},       // {convId: [{ts, dataUrl, duration}]}
+  echoPause: 2.0,       // seconds; auto-scale by sentence length
+  recorder: null,
+  recordingChunks: [],
+  isRecording: false,
+  recStart: 0,
+  recTimer: null,
+  // === Robust playback state ===
+  sequenceId: 0,        // incremented on each playback start; stale callbacks check this
+  // === Q&A user selections (per-conversation, in-memory only) ===
+  qaSelections: {}      // { convId: { qIdx: optIdx } }
+};
+
+/* =========================================================
+   STORAGE (localStorage for standalone HTML)
+   ========================================================= */
+const STORAGE_KEY = 'yj_toeic_shadowing_v1';
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    STATE.practiceCount = data.practiceCount || {};
+    STATE.recordings = data.recordings || {};
+  } catch(e) { console.warn('Load failed', e); }
+}
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      practiceCount: STATE.practiceCount,
+      recordings: STATE.recordings
+    }));
+  } catch(e) { console.warn('Save failed', e); }
+}
+
+/* =========================================================
+   VOICES (TTS)
+   ========================================================= */
+function pickVoices() {
+  const voices = speechSynthesis.getVoices();
+  const en = voices.filter(v => v.lang.startsWith('en'));
+  // Try US first, fallback to any en
+  const us = en.filter(v => v.lang.includes('US'));
+  const pool = us.length ? us : en;
+
+  // Heuristics for gender by voice name
+  const femaleNames = /samantha|female|woman|allison|ava|joanna|kendra|salli|kimberly|amy|emma|nicole|karen|tessa|moira|fiona|veena|zira|hazel/i;
+  const maleNames = /male|man|alex|daniel|fred|tom|matthew|brian|justin|joey|kevin|david|mark|richard|guy|paul|george/i;
+
+  STATE.voices.F = pool.find(v => femaleNames.test(v.name)) || pool[0] || null;
+  STATE.voices.M = pool.find(v => maleNames.test(v.name) && v !== STATE.voices.F) || pool[1] || pool[0] || null;
+  // Second female for 3-speaker dialogues
+  STATE.voices.F2 = pool.find(v => femaleNames.test(v.name) && v !== STATE.voices.F) || STATE.voices.F;
+}
+if ('speechSynthesis' in window) {
+  speechSynthesis.onvoiceschanged = pickVoices;
+  pickVoices();
+}
+
+/* =========================================================
+   RENDER
+   ========================================================= */
+function renderConvList() {
+  const list = document.getElementById('convList');
+  list.innerHTML = '';
+  CONVERSATIONS.forEach((c, i) => {
+    const count = STATE.practiceCount[c.id] || 0;
+    const btn = document.createElement('button');
+    btn.className = 'conv-item' + (i === STATE.current ? ' active' : '');
+    btn.innerHTML = `
+      <span class="conv-num">${String(i+1).padStart(2,'0')}</span>
+      <span class="conv-info">
+        <div class="conv-title">${c.title}</div>
+        <div class="conv-meta">
+          <span>${c.topic}</span>
+          <span class="dot"></span>
+          <span>${c.level}</span>
+        </div>
+      </span>
+      <span class="conv-count ${count === 0 ? 'zero' : ''}">×${count}</span>
+    `;
+    btn.addEventListener('click', () => selectConv(i));
+    list.appendChild(btn);
+  });
+  updateTotal();
+}
+
+function updateTotal() {
+  const total = Object.values(STATE.practiceCount).reduce((a,b) => a+b, 0);
+  document.getElementById('totalPractices').textContent = total;
+  const t = document.getElementById('streakText');
+  if (total === 0) t.textContent = 'Start your practice today';
+  else if (total < 10) t.textContent = `Great start — ${10 - total} to go for 10!`;
+  else if (total < 30) t.textContent = `Building momentum — keep going!`;
+  else t.textContent = `Excellent dedication 🎯`;
+}
+
+function renderConv() {
+  const c = CONVERSATIONS[STATE.current];
+  document.getElementById('convTopic').textContent = c.topic;
+  document.getElementById('convLevel').textContent = c.level;
+  document.getElementById('convTitle').textContent = c.title;
+  document.getElementById('convDesc').textContent = c.desc;
+
+  // Lines
+  const list = document.getElementById('lineList');
+  list.innerHTML = '';
+  c.lines.forEach((ln, i) => {
+    const item = document.createElement('div');
+    item.className = 'line';
+    item.dataset.idx = i;
+
+    let enText = ln.en;
+    // Highlight vocab words
+    if (ln.vocab) {
+      ln.vocab.forEach(([word, meaning]) => {
+        const escapedWord = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const re = new RegExp(`\\b(${escapedWord})\\b`, 'i');
+        enText = enText.replace(re, `<span class="key-word" data-meaning="${meaning}" data-word="${word}">$1</span>`);
+      });
+    }
+
+    item.innerHTML = `
+      <span class="speaker-tag speaker-${ln.spk}">${ln.spk}</span>
+      <div class="line-content">
+        <div class="line-en">${enText}</div>
+        <div class="line-ko ${STATE.showKo ? 'show' : ''}">${ln.ko}</div>
+      </div>
+      <button class="line-play" data-idx="${i}" title="이 문장 재생">▶</button>
+    `;
+    item.addEventListener('click', (e) => {
+      if (e.target.classList.contains('key-word')) return;
+      STATE.lineIdx = i;
+      playLine(i);
+    });
+    list.appendChild(item);
+  });
+
+  // Questions — Multiple Choice (3 options per question)
+  const ql = document.getElementById('qaList');
+  ql.innerHTML = '';
+  // Reset user selections when switching conversations
+  if (!STATE.qaSelections) STATE.qaSelections = {};
+  if (!STATE.qaSelections[c.id]) STATE.qaSelections[c.id] = {};
+  const selections = STATE.qaSelections[c.id];
+
+  c.questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'qa-item';
+    div.dataset.qIdx = i;
+    div.dataset.correct = q.answer;
+
+    const letters = ['A', 'B', 'C', 'D'];
+    const optsHtml = q.options.map((opt, oi) => {
+      const isSelected = selections[i] === oi;
+      const isCorrect = STATE.showAns && oi === q.answer;
+      const isWrong = STATE.showAns && isSelected && oi !== q.answer;
+      let cls = 'qa-opt';
+      if (isSelected && !STATE.showAns) cls += ' selected';
+      if (isCorrect) cls += ' correct';
+      if (isWrong) cls += ' wrong';
+      return `
+        <button class="${cls}" data-opt-idx="${oi}">
+          <span class="qa-letter">${letters[oi]}</span>
+          <span class="qa-text">${opt}</span>
+        </button>`;
+    }).join('');
+
+    div.innerHTML = `
+      <div class="qa-q"><span class="qa-num">${i+1}.</span>${q.q}</div>
+      <div class="qa-options">${optsHtml}</div>
+    `;
+    ql.appendChild(div);
+  });
+
+  // Wire up option clicks (selection)
+  ql.querySelectorAll('.qa-opt').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      if (STATE.showAns) return;  // can't change selection while answers shown
+      const item = btn.closest('.qa-item');
+      const qIdx = parseInt(item.dataset.qIdx);
+      const optIdx = parseInt(btn.dataset.optIdx);
+      selections[qIdx] = optIdx;
+      // Update visual state for this question's options only
+      item.querySelectorAll('.qa-opt').forEach((o, oi) => {
+        o.classList.toggle('selected', oi === optIdx);
+      });
+    });
+  });
+
+  // Recordings
+  renderRecordings();
+
+  // Counter
+  document.getElementById('lineCounter').textContent = `${c.lines.length} lines`;
+  document.getElementById('ctrlStatus').textContent = `— · ${c.lines.length}`;
+
+  // Vocab hover
+  setupVocabHover();
+}
+
+function renderRecordings() {
+  const c = CONVERSATIONS[STATE.current];
+  const recs = STATE.recordings[c.id] || [];
+  const list = document.getElementById('recList');
+  if (!recs.length) {
+    list.innerHTML = '<div class="empty-state">아직 녹음이 없습니다.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  recs.slice().reverse().forEach((rec, i) => {
+    const realIdx = recs.length - 1 - i;
+    const div = document.createElement('div');
+    div.className = 'recording-item';
+    const d = new Date(rec.ts);
+    const dateStr = `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+    div.innerHTML = `
+      <button class="play-rec" data-idx="${realIdx}" title="재생">▶</button>
+      <span class="rec-meta">${dateStr} · ${rec.duration.toFixed(1)}s</span>
+      <button class="dl-rec" data-idx="${realIdx}" title="MP3로 다운로드">⬇ MP3</button>
+      <button class="del-rec" data-idx="${realIdx}" title="삭제">✕</button>
+    `;
+    list.appendChild(div);
+  });
+  list.querySelectorAll('.play-rec').forEach(b => {
+    b.addEventListener('click', () => {
+      const idx = +b.dataset.idx;
+      const rec = STATE.recordings[c.id][idx];
+      const a = new Audio(rec.dataUrl);
+      a.play();
+    });
+  });
+  list.querySelectorAll('.dl-rec').forEach(b => {
+    b.addEventListener('click', async () => {
+      const idx = +b.dataset.idx;
+      const rec = STATE.recordings[c.id][idx];
+      const original = b.innerHTML;
+      b.disabled = true;
+      b.innerHTML = '⏳ 변환중';
+      try {
+        await downloadRecordingAsMp3(rec, c.id, idx);
+        b.innerHTML = '✓ 완료';
+        setTimeout(() => { b.innerHTML = original; b.disabled = false; }, 1500);
+      } catch (err) {
+        console.error('MP3 conversion failed:', err);
+        b.innerHTML = '⚠ 실패';
+        setTimeout(() => { b.innerHTML = original; b.disabled = false; }, 2000);
+        alert('MP3 변환에 실패했습니다. 다시 시도해 주세요.\n' + err.message);
+      }
+    });
+  });
+  list.querySelectorAll('.del-rec').forEach(b => {
+    b.addEventListener('click', () => {
+      const idx = +b.dataset.idx;
+      STATE.recordings[c.id].splice(idx, 1);
+      saveState();
+      renderRecordings();
+    });
+  });
+}
+
+/* =========================================================
+   MP3 CONVERSION (lamejs)
+   ========================================================= */
+async function convertToMp3(audioBlob) {
+  if (typeof lamejs === 'undefined') {
+    throw new Error('MP3 인코더가 로드되지 않았습니다. 인터넷 연결을 확인하세요.');
+  }
+  // Decode audio (webm/ogg) → PCM via AudioContext
+  const arrayBuffer = await audioBlob.arrayBuffer();
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioCtx();
+  const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer.slice(0));
+
+  // Use first channel (mono); average if stereo for better quality
+  const numChannels = audioBuffer.numberOfChannels;
+  const sampleRate = audioBuffer.sampleRate;
+  const length = audioBuffer.length;
+  const samplesFloat = new Float32Array(length);
+  if (numChannels >= 2) {
+    const left = audioBuffer.getChannelData(0);
+    const right = audioBuffer.getChannelData(1);
+    for (let i = 0; i < length; i++) samplesFloat[i] = (left[i] + right[i]) / 2;
+  } else {
+    samplesFloat.set(audioBuffer.getChannelData(0));
+  }
+
+  // Float32 → Int16 PCM
+  const samples = new Int16Array(length);
+  for (let i = 0; i < length; i++) {
+    const s = Math.max(-1, Math.min(1, samplesFloat[i]));
+    samples[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+
+  // Encode MP3 (mono, 128 kbps)
+  const mp3encoder = new lamejs.Mp3Encoder(1, sampleRate, 128);
+  const mp3Data = [];
+  const blockSize = 1152;
+  for (let i = 0; i < samples.length; i += blockSize) {
+    const chunk = samples.subarray(i, i + blockSize);
+    const mp3buf = mp3encoder.encodeBuffer(chunk);
+    if (mp3buf.length > 0) mp3Data.push(mp3buf);
+  }
+  const final = mp3encoder.flush();
+  if (final.length > 0) mp3Data.push(final);
+
+  audioCtx.close && audioCtx.close();
+  return new Blob(mp3Data, { type: 'audio/mp3' });
+}
+
+async function downloadRecordingAsMp3(rec, convId, idx) {
+  // Convert stored dataUrl back to Blob
+  const res = await fetch(rec.dataUrl);
+  const webmBlob = await res.blob();
+  const mp3Blob = await convertToMp3(webmBlob);
+
+  const c = CONVERSATIONS.find(x => x.id === convId);
+  const safeTitle = (c.title || 'recording').replace(/[^a-zA-Z0-9가-힣]+/g, '_');
+  const d = new Date(rec.ts);
+  const dateStr = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}_${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}`;
+  const filename = `YJ_Shadowing_${safeTitle}_${dateStr}.mp3`;
+
+  const url = URL.createObjectURL(mp3Blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+function setupVocabHover() {
+  const tip = document.getElementById('vocabTip');
+  document.querySelectorAll('.key-word').forEach(el => {
+    el.addEventListener('mouseenter', (e) => {
+      const meaning = el.dataset.meaning;
+      const word = el.dataset.word;
+      tip.innerHTML = `<strong>${word}</strong><span class="vocab-ko">${meaning}</span>`;
+      const r = el.getBoundingClientRect();
+      tip.style.left = (r.left + window.scrollX) + 'px';
+      tip.style.top = (r.top + window.scrollY - 50) + 'px';
+      tip.classList.add('show');
+    });
+    el.addEventListener('mouseleave', () => tip.classList.remove('show'));
+  });
+}
+
+/* =========================================================
+   PLAYBACK
+   ========================================================= */
+function getVoiceForLine(line) {
+  if (line.g === 'F') return STATE.voices.F;
+  if (line.g === 'M') return STATE.voices.M;
+  return STATE.voices.F;
+}
+
+/* =========================================================
+   ROBUST PLAYBACK ENGINE V4
+   - Engine priming (silent utterance to wake up TTS)
+   - Adaptive safety timeout based on word count and speed
+   - Never-started detection (5s window)
+   - Detailed console logging for diagnostics
+   - Sequence ID isolation prevents stale callbacks
+   ========================================================= */
+
+// === Voice loading ===
+let voicesReadyPromise = null;
+function ensureVoicesReady() {
+  if (voicesReadyPromise) return voicesReadyPromise;
+  voicesReadyPromise = new Promise((resolve) => {
+    let v = speechSynthesis.getVoices();
+    if (v && v.length > 0) { pickVoices(); resolve(); return; }
+    let attempts = 0;
+    const interval = setInterval(() => {
+      v = speechSynthesis.getVoices();
+      attempts++;
+      if ((v && v.length > 0) || attempts > 30) {
+        clearInterval(interval);
+        if (v && v.length > 0) pickVoices();
+        resolve();
+      }
+    }, 100);
+  });
+  return voicesReadyPromise;
+}
+
+// === Engine priming (Chrome/Safari first-call quirk workaround) ===
+let enginePrimed = false;
+async function primeEngine() {
+  if (enginePrimed) return;
+  enginePrimed = true;
+  return new Promise((resolve) => {
+    try {
+      const u = new SpeechSynthesisUtterance(' ');
+      u.volume = 0;
+      u.onend = resolve;
+      u.onerror = resolve;
+      setTimeout(resolve, 600);
+      speechSynthesis.speak(u);
+    } catch(e) { resolve(); }
+  });
+}
+
+// === Warm up handler kept for backward compat ===
+let synthWarmed = false;
+function warmSynthEngine() {
+  if (synthWarmed) return;
+  synthWarmed = true;
+  try {
+    const u = new SpeechSynthesisUtterance('.');
+    u.volume = 0;
+    speechSynthesis.speak(u);
+    setTimeout(() => { try { speechSynthesis.cancel(); } catch(e){} }, 50);
+  } catch(e) {}
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// === Status indicator ===
+function showStatus(count, text) {
+  const statusEl = document.getElementById('playbackStatus');
+  const countEl = document.getElementById('statusCount');
+  const textEl = document.getElementById('statusText');
+  if (statusEl) statusEl.classList.add('show');
+  if (countEl) countEl.textContent = count;
+  if (textEl) textEl.textContent = text;
+}
+function hideStatus() {
+  const statusEl = document.getElementById('playbackStatus');
+  if (statusEl) statusEl.classList.remove('show');
+}
+
+// === Entry point ===
+// === Pick a single reliable English voice ===
+function getReliableVoice() {
+  const voices = speechSynthesis.getVoices();
+  if (!voices || voices.length === 0) return null;
+  let v = voices.find(v => v.default && v.lang && v.lang.startsWith('en'));
+  if (v) return v;
+  v = voices.find(v => v.lang && v.lang.includes('en-US'));
+  if (v) return v;
+  v = voices.find(v => v.lang && v.lang.startsWith('en'));
+  if (v) return v;
+  return voices[0];
+}
+
+// === Speaker pitch variation (subtle differentiation with single voice) ===
+function getSpeakerPitch(spk) {
+  if (spk === 'B') return 0.88;   // slightly lower (often male-like)
+  if (spk === 'C') return 1.15;   // slightly higher
+  return 1.0;                      // A: neutral
+}
+
+// === Entry point ===
+async function playLine(idx) {
+  await ensureVoicesReady();
+  await primeEngine();
+
+  const c = CONVERSATIONS[STATE.current];
+  if (idx >= c.lines.length || idx < 0) { stopPlayback(); return; }
+
+  STATE.sequenceId = (STATE.sequenceId || 0) + 1;
+  const mySeq = STATE.sequenceId;
+  STATE.playing = true;
+  STATE.lineIdx = idx;
+  document.getElementById('playBtn').textContent = '❚❚';
+
+  try { speechSynthesis.cancel(); } catch(e) {}
+  await sleep(350);
+  if (mySeq !== STATE.sequenceId || !STATE.playing) return;
+
+  const voice = getReliableVoice();
+  console.log('=== Playback start | session', mySeq, '| mode:', STATE.mode, '| from line', idx + 1, '/', c.lines.length);
+  console.log('  Using single voice:', voice ? voice.name : '(browser default)');
+  console.log('  Speakers differentiated by pitch: A=1.0, B=0.88, C=1.15');
+  console.log('  speed:', STATE.speed);
+
+  // Dispatch by mode
+  if (STATE.mode === 'echo') {
+    playEchoChain(idx, mySeq, voice);
+  } else {
+    playNativeQueue(idx, mySeq, voice);
+  }
+}
+
+// === LISTEN / SYNC MODE — Native browser queue with single voice ===
+// All utterances queued at once; browser handles sequencing.
+// Single voice avoids per-voice failure modes.
+function playNativeQueue(startIdx, mySeq, voice) {
+  const c = CONVERSATIONS[STATE.current];
+  const total = c.lines.length;
+
+  highlightLine(startIdx);
+  showStatus(`${startIdx + 1}/${total}`, c.lines[startIdx].en.substring(0, 55));
+
+  for (let i = startIdx; i < total; i++) {
+    const ln = c.lines[i];
+    const u = new SpeechSynthesisUtterance(ln.en);
+    if (voice) u.voice = voice;
+    u.lang = 'en-US';
+    u.rate = (STATE.speed && STATE.speed > 0.1 && STATE.speed < 3.0) ? STATE.speed : 1.0;
+    u.pitch = getSpeakerPitch(ln.spk);
+    u.volume = 1.0;
+
+    const idx = i;
+
+    u.onstart = () => {
+      if (mySeq !== STATE.sequenceId) return;
+      STATE.lineIdx = idx;
+      highlightLine(idx);
+      const displayText = ln.en.length > 55 ? ln.en.substring(0, 55) + '...' : ln.en;
+      showStatus(`${idx + 1}/${total}`, displayText);
+      console.log(`[queue] ▶ ${idx + 1}/${total} [${ln.spk}, pitch=${u.pitch}]: "${ln.en.substring(0, 50)}"`);
+    };
+
+    u.onerror = (e) => {
+      console.warn(`[queue] ⚠ error on ${idx + 1}/${total}:`, e && e.error);
+    };
+
+    // Only last utterance triggers stop
+    if (i === total - 1) {
+      u.onend = () => {
+        if (mySeq !== STATE.sequenceId) return;
+        console.log('[queue] ✓ ALL', total, 'sentences played');
+        showStatus(`${total}/${total}`, '✓ 재생 완료');
+        setTimeout(hideStatus, 2000);
+        stopPlayback();
+      };
+    } else {
+      // For Listen mode, add a brief silent pause utterance between sentences
+      // (gives natural breathing room without JS chaining)
+      // We don't add a pause utterance — the browser's natural gap is fine
+    }
+
+    speechSynthesis.speak(u);
+  }
+}
+
+// === ECHO MODE — Sequential callback chain with countdown pauses ===
+function playEchoChain(idx, mySeq, voice) {
+  if (mySeq !== STATE.sequenceId || !STATE.playing) return;
+
+  const c = CONVERSATIONS[STATE.current];
+  const total = c.lines.length;
+
+  if (idx >= total) {
+    showStatus(`${total}/${total}`, '✓ 재생 완료');
+    setTimeout(hideStatus, 1500);
+    console.log('[echo] ✓ ALL', total, 'sentences played');
+    stopPlayback();
+    return;
+  }
+
+  const line = c.lines[idx];
+  STATE.lineIdx = idx;
+  highlightLine(idx);
+  showStatus(`${idx + 1}/${total}`, line.en.length > 55 ? line.en.substring(0, 55) + '...' : line.en);
+
+  const u = new SpeechSynthesisUtterance(line.en);
+  if (voice) u.voice = voice;
+  u.lang = 'en-US';
+  const rate = (STATE.speed && STATE.speed > 0.1 && STATE.speed < 3.0) ? STATE.speed : 1.0;
+  u.rate = rate;
+  u.pitch = getSpeakerPitch(line.spk);
+  u.volume = 1.0;
+
+  console.log(`[echo] ▶ ${idx + 1}/${total} [${line.spk}, pitch=${u.pitch}]: "${line.en.substring(0, 50)}"`);
+
+  const speechStart = Date.now();
+  let advanced = false;
+  let safetyTimer = null;
+  let neverStartedTimer = null;
+
+  function advanceToNext(reason) {
+    if (advanced) return;
+    advanced = true;
+    if (safetyTimer) clearTimeout(safetyTimer);
+    if (neverStartedTimer) clearTimeout(neverStartedTimer);
+    if (mySeq !== STATE.sequenceId || !STATE.playing) return;
+
+    const speechDurationMs = Date.now() - speechStart;
+    console.log(`[echo] ↳ done ${idx + 1}/${total} via ${reason} (${speechDurationMs}ms)`);
+
+    if (idx < total - 1) {
+      const pauseMs = Math.max(3500, Math.floor(speechDurationMs * 1.8) + 500);
+      runEchoCountdown(pauseMs, mySeq).then(() => {
+        playEchoChain(idx + 1, mySeq, voice);
+      });
+    } else {
+      playEchoChain(idx + 1, mySeq, voice);  // triggers completion
+    }
+  }
+
+  u.onstart = () => console.log(`[echo]   started ${idx + 1}`);
+  u.onend = () => advanceToNext('onend');
+  u.onerror = (e) => {
+    console.warn(`[echo]   error ${idx + 1}:`, e && e.error);
+    advanceToNext('onerror');
+  };
+
+  // Adaptive safety
+  const wordCount = line.en.split(/\s+/).length;
+  const expectedMs = (wordCount * 500) / rate;
+  const safetyMs = Math.max(15000, Math.floor(expectedMs + 5000));
+  safetyTimer = setTimeout(() => {
+    console.warn(`[echo]   safety fired for ${idx + 1}`);
+    advanceToNext('safety');
+  }, safetyMs);
+
+  // Never-started check
+  neverStartedTimer = setTimeout(() => {
+    if (!advanced && !speechSynthesis.speaking && !speechSynthesis.pending) {
+      console.warn(`[echo]   never-started for ${idx + 1}`);
+      advanceToNext('never-started');
+    }
+  }, 5000);
+
+  try {
+    speechSynthesis.speak(u);
+  } catch (e) {
+    console.error(`[echo]   speak threw:`, e);
+    advanceToNext('exception');
+  }
+}
+
+// === Echo mode countdown (Promise) ===
+function runEchoCountdown(durationMs, mySeq) {
+  return new Promise((resolve) => {
+    const prompt = document.getElementById('echoPrompt');
+    const timerEl = document.getElementById('echoTimer');
+    const progressEl = document.getElementById('echoProgress');
+    prompt.classList.add('show');
+    const startTime = Date.now();
+    const tick = () => {
+      if (mySeq !== STATE.sequenceId || !STATE.playing) {
+        prompt.classList.remove('show');
+        progressEl.style.width = '0%';
+        resolve();
+        return;
+      }
+      const elapsed = Date.now() - startTime;
+      const remaining = Math.max(0, durationMs - elapsed);
+      timerEl.textContent = (remaining / 1000).toFixed(1) + 's';
+      progressEl.style.width = Math.min(100, (elapsed / durationMs) * 100) + '%';
+      if (remaining <= 0) {
+        prompt.classList.remove('show');
+        progressEl.style.width = '0%';
+        resolve();
+      } else {
+        requestAnimationFrame(tick);
+      }
+    };
+    tick();
+  });
+}
+
+function highlightLine(idx) {
+  document.querySelectorAll('.line').forEach((el, i) => {
+    el.classList.toggle('playing', i === idx);
+    if (i === idx) {
+      const rect = el.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+      const isOutOfView = rect.top < 80 || rect.bottom > viewportH - 120;
+      if (isOutOfView) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+  });
+  const total = CONVERSATIONS[STATE.current].lines.length;
+  document.getElementById('ctrlStatus').textContent = `${idx + 1} · ${total}`;
+}
+
+function stopPlayback() {
+  STATE.playing = false;
+  STATE.sequenceId = (STATE.sequenceId || 0) + 1;
+  try { speechSynthesis.cancel(); } catch(e) {}
+  document.getElementById('playBtn').textContent = '▶';
+  document.getElementById('echoPrompt').classList.remove('show');
+  const progressEl = document.getElementById('echoProgress');
+  if (progressEl) progressEl.style.width = '0%';
+  setTimeout(hideStatus, 2000);
+  if (STATE.lineIdx >= 2) {
+    incrementPractice();
+  }
+}
+
+
+function togglePlay() {
+  if (STATE.playing) {
+    stopPlayback();
+  } else {
+    playLine(STATE.lineIdx);
+  }
+}
+
+function incrementPractice() {
+  const id = CONVERSATIONS[STATE.current].id;
+  STATE.practiceCount[id] = (STATE.practiceCount[id] || 0) + 1;
+  saveState();
+  renderConvList();
+}
+
+/* =========================================================
+   SELECT CONVERSATION
+   ========================================================= */
+function selectConv(i) {
+  stopPlayback();
+  STATE.current = i;
+  STATE.lineIdx = 0;
+  renderConvList();
+  renderConv();
+}
+
+/* =========================================================
+   RECORDING
+   ========================================================= */
+async function toggleRecord() {
+  if (STATE.isRecording) {
+    stopRecording();
+  } else {
+    await startRecording();
+  }
+}
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    STATE.recordingChunks = [];
+    STATE.recorder = new MediaRecorder(stream);
+    STATE.recorder.ondataavailable = e => {
+      if (e.data.size > 0) STATE.recordingChunks.push(e.data);
+    };
+    STATE.recorder.onstop = () => {
+      const duration = (Date.now() - STATE.recStart) / 1000;
+      const blob = new Blob(STATE.recordingChunks, { type: 'audio/webm' });
+      const reader = new FileReader();
+      reader.onload = () => {
+        const c = CONVERSATIONS[STATE.current];
+        if (!STATE.recordings[c.id]) STATE.recordings[c.id] = [];
+        STATE.recordings[c.id].push({
+          ts: Date.now(),
+          dataUrl: reader.result,
+          duration: duration
+        });
+        // Limit to last 10 recordings per conversation
+        if (STATE.recordings[c.id].length > 10) {
+          STATE.recordings[c.id].shift();
+        }
+        saveState();
+        renderRecordings();
+      };
+      reader.readAsDataURL(blob);
+      stream.getTracks().forEach(t => t.stop());
+    };
+    STATE.recorder.start();
+    STATE.recStart = Date.now();
+    STATE.isRecording = true;
+    document.getElementById('recBtn').classList.add('recording');
+    updateRecTime();
+    STATE.recTimer = setInterval(updateRecTime, 100);
+  } catch(err) {
+    alert('마이크 권한이 필요합니다. 브라우저 설정에서 허용해 주세요.\n\n' + err.message);
+  }
+}
+
+function updateRecTime() {
+  const elapsed = ((Date.now() - STATE.recStart) / 1000).toFixed(1);
+  document.getElementById('recStatus').textContent = `● 녹음 중... ${elapsed}s`;
+}
+
+function stopRecording() {
+  if (STATE.recorder && STATE.recorder.state !== 'inactive') {
+    STATE.recorder.stop();
+  }
+  STATE.isRecording = false;
+  clearInterval(STATE.recTimer);
+  document.getElementById('recBtn').classList.remove('recording');
+  document.getElementById('recStatus').textContent = '녹음 완료. 아래에서 들어 보세요 ↓';
+  setTimeout(() => {
+    document.getElementById('recStatus').textContent = '탭하여 녹음 시작';
+  }, 2500);
+}
+
+/* =========================================================
+   EVENT BINDINGS
+   ========================================================= */
+function bindEvents() {
+  // Mode buttons
+  document.querySelectorAll('.mode-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      // Stop any current playback for a clean mode transition
+      stopPlayback();
+      document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      STATE.mode = b.dataset.mode;
+      const descs = {
+        listen: '🎧 Listen Mode — 전체 대화를 처음부터 끝까지 자연스럽게 들어 보세요. 문장 사이 짧은 호흡으로 6문장 모두 순차 재생됩니다.',
+        echo: '🔁 Echo Mode — 한 문장을 듣고 → 충분한 정지 시간(문장 길이 × 1.8배, 최소 3.5초) 동안 학생이 따라 말한 뒤 → 다음 문장으로 자동 진행. 한 문장씩 완벽하게 익히는 핵심 연습 모드입니다.',
+        sync: '🎙️ Sync Mode — 원어민과 거의 같은 속도로 문장 사이 간격 없이 연속 재생됩니다. 학생은 음성을 들으면서 동시에 따라 말합니다. (속도 1.0× 권장)'
+      };
+      document.getElementById('modeDesc').textContent = descs[STATE.mode];
+    });
+  });
+
+  // Play All Conversation button (always plays from start in Listen mode)
+  document.getElementById('playAllBtn').addEventListener('click', async () => {
+    stopPlayback();
+    // Switch to listen mode for full playthrough
+    document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('active'));
+    document.querySelector('.mode-btn[data-mode="listen"]').classList.add('active');
+    STATE.mode = 'listen';
+    document.getElementById('modeDesc').textContent = '🎧 Listen Mode — 전체 대화를 처음부터 끝까지 자연스럽게 들어 보세요. 문장 사이 짧은 호흡으로 6문장 모두 순차 재생됩니다.';
+    STATE.lineIdx = 0;
+    // playLine is async and handles its own cancel/settle delay
+    await playLine(0);
+  });
+
+  // TTS Test button — verifies the speech engine works at all
+  document.getElementById('ttsTestBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('ttsTestBtn');
+    const originalHtml = btn.innerHTML;
+    btn.innerHTML = '<span>⏳</span><span>테스트 중...</span>';
+    btn.disabled = true;
+
+    await ensureVoicesReady();
+    await primeEngine();
+    try { speechSynthesis.cancel(); } catch(e) {}
+    await sleep(300);
+
+    const voices = speechSynthesis.getVoices();
+    const enVoices = voices.filter(v => v.lang && v.lang.startsWith('en'));
+    console.log('=== TTS TEST ===');
+    console.log('Total voices on system:', voices.length);
+    console.log('English voices:', enVoices.length);
+    enVoices.forEach(v => console.log('  -', v.name, '(' + v.lang + ')', v.default ? '[default]' : ''));
+
+    if (enVoices.length === 0) {
+      alert('⚠ 이 브라우저에는 영어 음성이 설치되어 있지 않습니다.\n\nChrome이나 Edge를 사용하시거나, Windows의 경우 [설정 → 시간 및 언어 → 언어]에서 English (United States) 언어 팩을 추가 설치해 주세요.');
+      btn.innerHTML = originalHtml;
+      btn.disabled = false;
+      return;
+    }
+
+    const u = new SpeechSynthesisUtterance('Hello! This is a test of the speech engine. If you can hear this clearly, your text to speech is working perfectly. One, two, three, four, five, six.');
+    u.lang = 'en-US';
+    u.rate = 1.0;
+
+    let started = false;
+    let ended = false;
+
+    u.onstart = () => {
+      started = true;
+      console.log('TTS test: ▶ started speaking');
+      btn.innerHTML = '<span>🔊</span><span>재생 중...</span>';
+    };
+    u.onend = () => {
+      ended = true;
+      console.log('TTS test: ✓ ended normally');
+      btn.innerHTML = '<span>✓</span><span>테스트 성공</span>';
+      setTimeout(() => {
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }, 2000);
+    };
+    u.onerror = (e) => {
+      console.warn('TTS test: ⚠ error', e && e.error);
+      alert('⚠ 음성 테스트 실패: ' + (e && e.error || '알 수 없는 오류') + '\n\n브라우저 설정에서 사이트 권한이나 음소거 여부를 확인해 주세요.');
+      btn.innerHTML = originalHtml;
+      btn.disabled = false;
+    };
+
+    speechSynthesis.speak(u);
+
+    // Verify it actually starts
+    setTimeout(() => {
+      if (!started && !speechSynthesis.speaking) {
+        console.warn('TTS test: never started');
+        alert('⚠ 음성이 시작되지 않았습니다.\n\n시스템 볼륨, 브라우저 음소거, 또는 오디오 출력 장치를 확인해 주세요.\n또는 Chrome/Edge 최신 버전을 사용해 보세요.');
+        btn.innerHTML = originalHtml;
+        btn.disabled = false;
+      }
+    }, 4000);
+  });
+
+  // Speed
+  document.querySelectorAll('.speed-pill').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.speed-pill').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      STATE.speed = parseFloat(b.dataset.speed);
+    });
+  });
+
+  // Transport
+  document.getElementById('playBtn').addEventListener('click', togglePlay);
+  document.getElementById('prevBtn').addEventListener('click', () => {
+    stopPlayback();
+    if (STATE.lineIdx > 0) STATE.lineIdx--;
+    playLine(STATE.lineIdx);
+  });
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    stopPlayback();
+    const total = CONVERSATIONS[STATE.current].lines.length;
+    if (STATE.lineIdx < total - 1) STATE.lineIdx++;
+    playLine(STATE.lineIdx);
+  });
+  document.getElementById('stopBtn').addEventListener('click', () => {
+    stopPlayback();
+    STATE.lineIdx = 0;
+    document.querySelectorAll('.line').forEach(el => el.classList.remove('playing'));
+    document.getElementById('ctrlStatus').textContent = `— · ${CONVERSATIONS[STATE.current].lines.length}`;
+  });
+
+  // Toggles
+  document.getElementById('toggleKo').addEventListener('click', () => {
+    STATE.showKo = !STATE.showKo;
+    document.querySelectorAll('.line-ko').forEach(el => el.classList.toggle('show', STATE.showKo));
+    document.getElementById('toggleKo').classList.toggle('active', STATE.showKo);
+  });
+  document.getElementById('toggleAns').addEventListener('click', () => {
+    STATE.showAns = !STATE.showAns;
+    document.getElementById('toggleAns').classList.toggle('active', STATE.showAns);
+    // Re-render the conversation to update Q&A option styling (correct/wrong highlighting)
+    renderConv();
+  });
+
+  // Recording
+  document.getElementById('recBtn').addEventListener('click', toggleRecord);
+  document.getElementById('clearRecs').addEventListener('click', () => {
+    if (!confirm('이 대화의 모든 녹음을 삭제할까요?')) return;
+    const id = CONVERSATIONS[STATE.current].id;
+    STATE.recordings[id] = [];
+    saveState();
+    renderRecordings();
+  });
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.code === 'Space') { e.preventDefault(); togglePlay(); }
+    else if (e.code === 'ArrowLeft') { document.getElementById('prevBtn').click(); }
+    else if (e.code === 'ArrowRight') { document.getElementById('nextBtn').click(); }
+    else if (e.key.toLowerCase() === 'k') { document.getElementById('toggleKo').click(); }
+    else if (e.key.toLowerCase() === 'a') { document.getElementById('toggleAns').click(); }
+    else if (e.key.toLowerCase() === 'r') { document.getElementById('recBtn').click(); }
+  });
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+function init() {
+  loadState();
+  bindEvents();
+  renderConvList();
+  renderConv();
+  // Trigger voice loading immediately
+  ensureVoicesReady();
+  // Warm up speech engine on first user interaction (required for mobile Safari)
+  document.addEventListener('click', function firstClick() {
+    if (!STATE.voices.F) pickVoices();
+    warmSynthEngine();
+    document.removeEventListener('click', firstClick);
+  }, { once: true });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+</body>
+</html>
